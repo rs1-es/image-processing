@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free and simple image manipulation tool">
+    <meta name="keywords" content="image, compress, imagemagick, cloud, image quality">
+    <meta name="author" content="RS1">
+    <meta name="og:title" content="RS1 Image Processing">
+    <meta name="og:description" content="Free and simple image manipulation tool">
+    <meta name="og:url" content="https://imgproc.rs1.es">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="RS1 Image Processing">
+    <meta name="og:image" content="https://imgproc.rs1.es/apple-touch-icon.png">
+    <meta name="og:image:width" content="256">
+    <meta name="og:image:height" content="256">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RS1 Image Processing">
+    <meta name="twitter:description" content="Free and simple image manipulation tool">
+    <meta name="twitter:url" content="https://imgproc.rs1.es">
+    <meta name="twitter:image" content="https://imgproc.rs1.es/apple-touch-icon.png">
+    <title>RS1 Image Processing - imgproc.rs1.es</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="res/css/main.min.css?v=20210621_1747">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+
+<body>
+    <header>
+        <div class="logo-header">
+            <img src="res/imgs/logo-header.png" alt="">
+        </div>
+        <div class="title-header">
+            <h1><a href="/">Image Processing</a></h1>
+        </div>
+    </header>
+    <main>
+        <div class="intro">
+            <p>This image processing tool allows image manipulation in three simple steps.</p>
+            <p class="sub">Files are deleted every 24 hours.</p>
+        </div>
+        <div class="steps">
+            <div class="step" id="dropFileHere">
+                <div class="step-intro">
+                    <div class="step-num">1</div>
+                    <div class="step-name">Choose images
+                        <span>max. 30MB per file</span>
+                        <span>You can drag and drop on this area</span>
+                    </div>
+                </div>
+                <div class="step-actions">
+                    <button id="select-file-btn" class="enabled">Select Images</button>
+                    <div class="filename"></div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-intro">
+                    <div class="step-num">2</div>
+                    <div class="step-name">Choose transformations<span>Click the name to activate</span></div>
+                </div>
+                <div class="step-actions">
+                    <div class="step-action action-disabled" id="resize">
+                        <div class="step-action-name" id="resize-name">Resize</div>
+                        <div class="step-action-content action-content-disabled">
+                            <p>The resizing is proportional.</p>
+                            <div class="dimensionBox">
+                                <input type="radio" name="radio" id="width-radio" value="width" autocomplete="off">
+                                <label for="width-radio">Width:</label>
+                                <input type="number" name="width-number" class="resize-inputs" id="width-input"
+                                    autocomplete="off" disabled>
+                            </div>
+                            <div class="dimensionBox">
+                                <input type="radio" name="radio" id="height-radio" value="height" autocomplete="off">
+                                <label for="height-radio">Height:</label>
+                                <input type="number" name="height" class="resize-inputs" id="height-input"
+                                    autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-action action-disabled" id="quality">
+                        <div class="step-action-name" id="quality-name">Quality (JPEG)</div>
+                        <form class="step-action-content action-content-disabled" id="quality-range"
+                            oninput="x.value=parseInt(a.value)">0
+                            <input type="range" name="a" id="quality-input" value="80" autocomplete="off" disabled>100
+                            <output name="x" for="quality-input">80</output>
+                        </form>
+                    </div>
+
+                    <div class="step-action action-disabled" id="thumbnail">
+                        <div class="step-action-name" id="thumbnail-name">Thumbnail</div>
+                        <div class="step-action-content action-content-disabled">
+                            <p>Make a thumbnail (squared and cropped image). The rest of transformations will not have
+                                any effect.</p>
+                            <div class="thumbDimensionBox">
+                                <label for="thumbnail-input">Width:</label>
+                                <input type="number" name="thumbnail" id="thumbnail-input" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-action action-disabled" id="labels">
+                        <div class="step-action-name" id="labels-name">Detect objects</div>
+                    </div>
+
+                    <div class="step-action action-disabled" id="extract-text">
+                        <div class="step-action-name" id="extract-text-name">Extract text</div>
+                    </div>
+
+                    <div class="step-action action-disabled" id="remove-background">
+                        <div class="step-action-name" id="remove-background-name">Remove background</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-intro">
+                    <div class="step-num">3</div>
+                    <div class="step-name">Click to Apply</div>
+                </div>
+                <div class="step-actions">
+                    <button id="apply-btn" class="disabled" disabled autocomplete="off">Apply changes</button>
+                    <button id="reset-btn" class="disabled" disabled>RESET</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-block">
+            <div class="footer-intro">
+                <div class="footer-intro-title">
+                    <img src="res/imgs/logo-header.png" alt="">
+                    <span>Image Processing</span>
+                </div>
+                <div class="footer-intro-description">
+                    <p>This website allows simple image manipulation.</p>
+                    <p>This is part of <a href="https://rs1.es">RS1 Linux Tools</a>.</p>
+                </div>
+            </div>
+            <div class="footer-feedback">
+                <div class="footer-feedback-title">
+                    <span>Support & Feedback</span>
+                </div>
+                <div class="footer-feedback-desc">
+                    <p>If you have any troubles or suggestions, you can send an email to <a
+                            href="mailto:admin@rs1.es">admin@rs1.es</a>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-info">
+            <span>2020 - Created by RS1.</span>
+        </div>
+    </footer>
+
+    <script src="res/js/main.min.js?v=20210820_1210"></script>
+</body>
+
+</html>
